@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:background="@color/bottom_bar"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/id_tab_home"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/id_tab_home_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:clickable="false"
+            android:src="@drawable/selector_home_list" />
+
+        <TextView
+            android:id="@+id/id_tab_home_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="活动"
+            android:textColor="@color/bottom_textcolor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/id_tab_train"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/id_tab_train_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:clickable="false"
+            android:src="@drawable/selector_train" />
+
+        <TextView
+            android:id="@+id/id_tab_train_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="培训"
+            android:textColor="@color/bottom_untextcolor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/id_tab_club"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/id_tab_club_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:clickable="false"
+            android:src="@drawable/selector_club" />
+
+        <TextView
+            android:id="@+id/id_tab_club_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="俱乐部"
+            android:textColor="@color/bottom_untextcolor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/id_tab_share"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/id_tab_share_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:clickable="false"
+            android:src="@drawable/selector_share" />
+
+        <TextView
+            android:id="@+id/id_tab_share_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="晒图"
+            android:textColor="@color/bottom_untextcolor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/id_tab_me"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/id_tab_me_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:clickable="false"
+            android:src="@drawable/selector_me" />
+
+        <TextView
+            android:id="@+id/id_tab_me_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的"
+            android:textColor="@color/bottom_untextcolor" />
+    </LinearLayout>
+
+</LinearLayout>
