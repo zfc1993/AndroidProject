@@ -12,6 +12,7 @@
     <color name="bg_white">#ffffff</color>
     <color name="main_text">#333333</color>
     <color name="me_maintext">#8E9FA7</color>
+    <color name="bg2">#3472bd9c</color>
 
     <color name="colorUnChecked">#ACACAB</color>
 </resources>
