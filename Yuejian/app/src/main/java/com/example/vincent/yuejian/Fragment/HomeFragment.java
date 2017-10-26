@@ -1,5 +1,6 @@
 package com.example.vincent.yuejian.Fragment;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,7 +13,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.vincent.yuejian.Adapter.ActAdapter;
+import com.example.vincent.yuejian.Adapter.MasterAdapter;
+import com.example.vincent.yuejian.Adapter.MatchAdapter;
 import com.example.vincent.yuejian.Bean.Actbean;
+import com.example.vincent.yuejian.Bean.Matchbean;
+import com.example.vincent.yuejian.Bean.MasterBean;
+import com.example.vincent.yuejian.Service.ActivityService;
+import com.example.vincent.yuejian.Service.MatchService;
+import com.example.vincent.yuejian.Service.MasterService;
+import com.example.vincent.yuejian.network.RetrofitHelper;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.jude.rollviewpager.RollPagerView;
 
@@ -22,6 +31,10 @@ import com.jude.rollviewpager.hintview.ColorPointHintView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +54,7 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         initview();
         initEvents();
-//        getData();
+        getActData();
         return view;
 
     }
@@ -66,7 +79,7 @@ public class HomeFragment extends Fragment {
                 resetLineColor();
                 home_act_btn.setTextColor(0XFF72BD9C);
                 act_line.setImageResource(R.drawable.line_checked);
-                getData();
+                getActData();
             }
         });
 
@@ -77,6 +90,7 @@ public class HomeFragment extends Fragment {
                 home_pro_btn.setTextColor(0XFF72BD9C);
                 resetLineColor();
                 pro_line.setImageResource(R.drawable.line_checked);
+                getMasterData();
             }
         });
 
@@ -87,6 +101,7 @@ public class HomeFragment extends Fragment {
                 home_match_btn.setTextColor(0XFF72BD9C);
                 resetLineColor();
                 match_line.setImageResource(R.drawable.line_checked);
+                getMatchData();
             }
         });
     }
@@ -152,11 +167,77 @@ public class HomeFragment extends Fragment {
         match_line.setImageResource(R.drawable.line_unchecked);
     }
 
-    public void getData(){
-        List<Actbean> mList = new ArrayList<Actbean>(){};
+    public void getActData(){
+/*        List<Actbean> mList = new ArrayList<Actbean>(){};
         mList.add(new Actbean("test1", "name1"));
         mList.add(new Actbean("test2", "name2"));
-        home_list.setAdapter(new ActAdapter(this.getActivity(), mList));
+        home_list.setAdapter(new ActAdapter(this.getActivity(), mList));*/
+        RetrofitHelper retrofit = new RetrofitHelper();
+        Call<List<Actbean>> call = retrofit.builder(ActivityService.class).getactlist(String.valueOf(1));
+        call.enqueue(new Callback<List<Actbean>>() {
+            @Override
+            public void onResponse(Call<List<Actbean>> call, Response<List<Actbean>> response) {
+                List<Actbean> mlist = response.body();
+                home_list.setAdapter(new ActAdapter(getActivity(), mlist));
+            }
+
+            @Override
+            public void onFailure(Call<List<Actbean>> call, Throwable t) {
+                List<Actbean> mList = new ArrayList<Actbean>(){};
+                mList.add(new Actbean("test1", "name1"));
+                mList.add(new Actbean("test2", "name2"));
+                home_list.setAdapter(new ActAdapter(getActivity(), mList));
+            }
+        });
+    }
+
+    // Master data
+    public void getMasterData(){
+ /*       List<MasterBean> mList = new ArrayList<MasterBean>(){};
+        mList.add(new MasterBean("1", "nameX"));
+        mList.add(new MasterBean("2", "nameY"));
+        home_list.setAdapter(new ActAdapter2(getActivity(), mList));
+
+        List<MasterBean> mList = new ArrayList<MasterBean>(){};
+        mList.add(new MasterBean("test1", "nameX"));
+        mList.add(new MasterBean("test2", "nameY"));
+        home_list.setAdapter(new MasterAdapter(getActivity(), mList));*/
+
+        RetrofitHelper retrofit = new RetrofitHelper();
+        Call<List<MasterBean>> call = retrofit.builder(MasterService.class).getmmlist(String.valueOf(1));
+        call.enqueue(new Callback<List<MasterBean>>() {
+            @Override
+            public void onResponse(Call<List<MasterBean>> call, Response<List<MasterBean>> response) {
+                List<MasterBean> mmlist = response.body();
+                home_list.setAdapter(new MasterAdapter(getActivity(), mmlist));
+            }
+
+            @Override
+            public void onFailure(Call<List<MasterBean>> call, Throwable t) {
+                List<MasterBean> mList = new ArrayList<MasterBean>(){};
+                mList.add(new MasterBean("test1", "name1"));
+                mList.add(new MasterBean("test2", "name2"));
+                home_list.setAdapter(new MasterAdapter(getActivity(), mList));
+            }
+        });
+    }
+
+    // Match data
+    public void getMatchData(){
+        RetrofitHelper retrofit = new RetrofitHelper();
+        Call<List<Matchbean>> call = retrofit.builder(MatchService.class).getMatchlist(String.valueOf(1));
+        call.enqueue(new Callback<List<Matchbean>>() {
+            @Override
+            public void onResponse(Call<List<Matchbean>> call, Response<List<Matchbean>> response) {
+                List<Matchbean> mtlist = response.body();
+                home_list.setAdapter(new MatchAdapter(getActivity(), mtlist));
+            }
+
+            @Override
+            public void onFailure(Call<List<Matchbean>> call, Throwable t) {
+
+            }
+        });
     }
 
 }
