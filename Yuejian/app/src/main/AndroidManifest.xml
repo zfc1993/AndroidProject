@@ -24,6 +24,13 @@
         <activity android:name=".Activity.MatchSimpActivity" />
         <activity android:name=".Activity.MasterActivity" />
         <activity android:name=".Activity.MasterClassItem" />
+        <activity android:name=".Activity.ScrollPicDetail"/>
+        <activity android:name=".Activity.PostActivity"/>
+        <activity android:name=".Activity.AboutYJActivity"/>
+        <activity android:name=".Activity.PostDetail"/>
+        <activity android:name=".Activity.SubscribeActivity"/>
+        <activity android:name=".Activity.OrderActivity"/>
+        <activity android:name=".Activity.Setting"/>
         <activity android:name=".Activity.ApplyActivity"></activity>
 
     </application>

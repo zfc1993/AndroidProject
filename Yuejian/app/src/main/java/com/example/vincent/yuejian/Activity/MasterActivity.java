@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.vincent.yuejian.Adapter.MasterAdapter;
 import com.example.vincent.yuejian.Adapter.MasterIntroAdapter;
+import com.example.vincent.yuejian.Adapter.MasterQAAdapter;
 import com.example.vincent.yuejian.Bean.Actbean;
 import com.example.vincent.yuejian.Bean.MasterBean;
 import com.example.vincent.yuejian.Bean.MasterSimpbean;
@@ -51,6 +52,7 @@ public class MasterActivity extends AppCompatActivity{
     private TextView master_qa_btn;
     private ImageView master_qa_line;
     private XRecyclerView master_class_list;
+    private LinearLayout qa_submit_area;
 
     String master_id = null;
     String master_name = null;
@@ -83,10 +85,13 @@ public class MasterActivity extends AppCompatActivity{
         master_class_list = (XRecyclerView) findViewById(R.id.master_class_list);
         master_class_list.setLayoutManager(new LinearLayoutManager(this));
 
+        qa_submit_area = (LinearLayout) findViewById(R.id.qa_submit_area);
+
         title.setText("大师");
         master_class_area.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                qa_submit_area.setVisibility(View.INVISIBLE);
                 master_qa_btn.setTextColor(0XFFACACAB);
                 master_qa_line.setImageResource(R.drawable.line_unchecked);
                 master_class_btn.setTextColor(0XFF72BD9C);
@@ -98,6 +103,7 @@ public class MasterActivity extends AppCompatActivity{
         master_qa_area.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                qa_submit_area.setVisibility(View.VISIBLE);
                 master_class_btn.setTextColor(0XFFACACAB);
                 master_class_line.setImageResource(R.drawable.line_unchecked);
                 master_qa_btn.setTextColor(0XFF72BD9C);
@@ -135,18 +141,29 @@ public class MasterActivity extends AppCompatActivity{
             }
         });
     }
-    // 获取课程数据
+    /*
+    * 无数据库信息
+    * 测试用 actbean
+    * 之后修改masterintroadapter
+    * */
     public void getClassData(){
-//        master_class_list.setAdapter(new MasterIntroAdapter(this));
         List<Actbean> mList = new ArrayList<Actbean>(){};
         mList.add(new Actbean("test1", "name1"));
         mList.add(new Actbean("test2", "name2"));
         mList.add(new Actbean("test3", "name3"));
         master_class_list.setAdapter(new MasterIntroAdapter(this,mList));
     }
-    // 获取问答数据
+    /*
+    * 无数据库信息
+    * 测试用 actbean
+    * 之后修改masterqaadapter
+    * */
     public void getQAData(){
-
+        List<Actbean> mList = new ArrayList<Actbean>(){};
+        mList.add(new Actbean("test1", "name1"));
+        mList.add(new Actbean("test2", "name2"));
+        mList.add(new Actbean("test3", "name3"));
+        master_class_list.setAdapter(new MasterQAAdapter(this,mList));
     }
 
 }

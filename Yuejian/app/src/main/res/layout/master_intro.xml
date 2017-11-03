@@ -168,5 +168,31 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/qa_submit_area"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+            <EditText
+                android:id="@+id/qa_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_gravity="left"
+                android:textSize="16sp"
+                android:hint="我有问题问大师"/>
+            <Button
+                android:id="@+id/qa_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginLeft="180dp"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="提交"/>
+        </LinearLayout>
+
+
     </LinearLayout>
+>
 </ScrollView>

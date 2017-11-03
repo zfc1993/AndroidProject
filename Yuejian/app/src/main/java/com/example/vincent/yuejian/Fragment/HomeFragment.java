@@ -1,6 +1,7 @@
 package com.example.vincent.yuejian.Fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,14 +13,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.vincent.yuejian.Activity.ActSimpActivity;
+import com.example.vincent.yuejian.Activity.ScrollPicDetail;
 import com.example.vincent.yuejian.Adapter.ActAdapter;
 import com.example.vincent.yuejian.Adapter.MasterAdapter;
 import com.example.vincent.yuejian.Adapter.MatchAdapter;
+import com.example.vincent.yuejian.Adapter.PostAdapter;
 import com.example.vincent.yuejian.Bean.Actbean;
 import com.example.vincent.yuejian.Bean.Matchbean;
+import com.example.vincent.yuejian.Bean.PostBean;
 import com.example.vincent.yuejian.Bean.MasterBean;
 import com.example.vincent.yuejian.Service.ActivityService;
 import com.example.vincent.yuejian.Service.MatchService;
+import com.example.vincent.yuejian.Service.PostService;
 import com.example.vincent.yuejian.Service.MasterService;
 import com.example.vincent.yuejian.network.RetrofitHelper;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -28,6 +34,8 @@ import com.jude.rollviewpager.RollPagerView;
 import com.example.vincent.yuejian.R;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 import com.jude.rollviewpager.hintview.ColorPointHintView;
+import com.jude.rollviewpager.OnItemClickListener;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,13 +127,17 @@ public class HomeFragment extends Fragment {
         //设置适配器
         rollPVhome.setAdapter(new RollPagerAdapter());
         //设置每一个图片的点击事件
-        /*rollPV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        rollPVhome.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 Toast.makeText(getActivity(), "点击了图片"+position, Toast.LENGTH_SHORT).show();
-
+                Intent intent= new Intent(getActivity(), ScrollPicDetail.class);
+                Bundle bundle= new Bundle();
+                bundle.putString("picpos",String.valueOf(position));
+                intent.putExtras(bundle);
+                getActivity().startActivity(intent);
             }
-        });*/
+        });
     }
     private int images[] = {
             R.drawable.homeroll_1,
@@ -193,15 +205,11 @@ public class HomeFragment extends Fragment {
 
     // Master data
     public void getMasterData(){
- /*       List<MasterBean> mList = new ArrayList<MasterBean>(){};
-        mList.add(new MasterBean("1", "nameX"));
-        mList.add(new MasterBean("2", "nameY"));
-        home_list.setAdapter(new ActAdapter2(getActivity(), mList));
 
-        List<MasterBean> mList = new ArrayList<MasterBean>(){};
-        mList.add(new MasterBean("test1", "nameX"));
-        mList.add(new MasterBean("test2", "nameY"));
-        home_list.setAdapter(new MasterAdapter(getActivity(), mList));*/
+/*        List<PostBean> mList = new ArrayList<PostBean>(){};
+        mList.add(new PostBean("test1", "name1"));
+        mList.add(new PostBean("test2", "name2"));
+        home_list.setAdapter(new PostAdapter(getActivity(), mList));*/
 
         RetrofitHelper retrofit = new RetrofitHelper();
         Call<List<MasterBean>> call = retrofit.builder(MasterService.class).getmmlist(String.valueOf(1));
