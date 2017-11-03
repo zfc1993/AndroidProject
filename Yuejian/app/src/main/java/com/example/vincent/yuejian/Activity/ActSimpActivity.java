@@ -25,7 +25,7 @@ public class ActSimpActivity extends AppCompatActivity {
     TextView simp_title, simp_act_name, simp_act_address, simp_act_time, simp_act_cost, simp_act_tel, simp_info;
     RelativeLayout btn_apply;
     ImageView act_simp_pic, svg_back;
-    String actid = null;
+    String actid = null, actname = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +72,8 @@ public class ActSimpActivity extends AppCompatActivity {
     private void getlastActivityData() {
         Bundle bundle = this.getIntent().getExtras();
         actid = bundle.getString("actiid");
-        simp_title.setText(bundle.getString("actname"));
+        actname = bundle.getString("actname");
+        simp_title.setText(actname);
 
     }
 
@@ -91,6 +92,10 @@ public class ActSimpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ActSimpActivity.this, ApplyActivity.class);
+                Bundle bundle= new Bundle();
+                bundle.putString("actiid",actid);
+                bundle.putString("actname",actname);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
